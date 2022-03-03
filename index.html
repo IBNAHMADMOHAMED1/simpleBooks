@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Vue</title>
+  <script src="https://unpkg.com/vue@3.0.0"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" integrity="sha512-bSncow0ApIhONbz+pNI52n0trz5fMWbgteHsonaPk42JbunIeM9ee+zTYAUP1eLPky5wP0XZ7MSLAPxKkwnlzw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body{
+      background: #eee;
+      max-width: 960px;
+      margin: 20px auto;
+    }
+    p, h3, ul{
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style-type: none;
+      background: #fff;
+      margin: 20px auto;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    li.fav{
+      background: #ff9ed2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, Vue :)</h1>
+
+  <div id="app">
+    <div v-if="showBooks">
+      <ul>
+        <li v-for="book in filterBooks" :class="{ fav: book.isFav }">
+          <img :src="book.img" :alt="book.title">
+          <h3>{{ book.title }}</h3>
+          <p>{{ book.author }}</p>
+          <p>{{}}</p>
+          <div>
+            <button v-if="!book.isFav" @click="favorite(book)">Favorite</button> 
+            <button v-if="book.isFav" @click="favorite(book)">Cancl Favorite</button> 
+          </div>
+          
+        </li>
+      </ul>
+    </div>
+    <div v-else>
+      <p>Click the button below to show books</p>
+    </div>
+    
+    <button @click="toggleShowBooks">
+      <span v-if="showBooks">Hide books</span>
+      <span v-else>Show books</span>
+    </button>
+  </div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
